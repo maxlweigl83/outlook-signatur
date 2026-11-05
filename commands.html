@@ -4,8 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Outlook-Signatur – Add-in</title>
+
   <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
   <script src="commands.bundle.js"></script>
+
+  <script>
+    Office.onReady(function () {
+      console.log("Outlook-Signatur-Add-in bereit");
+    });
+  </script>
 </head>
 <body>
 </body>
