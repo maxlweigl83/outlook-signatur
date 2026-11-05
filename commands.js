@@ -26,6 +26,14 @@ function signaturEinfuegen(event) {
           buergermeister@deutsch-wagram.gv.at
         </a>
       </p>
+      <p style="margin:16px 0 0 0;">
+  <img
+    src="https://maxlweigl83.github.io/outlook-signatur/Aktueller-Banner.jpg"
+    alt="Aktuelle Kampagne der Stadtgemeinde Deutsch-Wagram"
+    width="500"
+    style="width:500px;max-width:100%;height:auto;border:0;"
+  >
+</p>
     </div>
   `;
 
