@@ -59,7 +59,7 @@
           </Runtimes>
 
           <DesktopFormFactor>
-            <FunctionFile resid="Commands.Url"/>
+
 
             <ExtensionPoint xsi:type="LaunchEvent">
               <LaunchEvents>
