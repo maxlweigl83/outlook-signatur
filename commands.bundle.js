@@ -1,1 +1,72 @@
-Office.actions.associate("signaturEinfuegen",function(e){try{Office.context.mailbox.item.body.setSignatureAsync('\n    <div style="font-family:Arial,sans-serif;font-size:12px;line-height:1.4;">\n      <p style="color:#943400;margin:0 0 12px 0;">\n        <strong>Markus Mentl-Weigl</strong><br>\n        Bürgermeister\n      </p>\n\n      <p style="margin:12px 0 16px 0;">\n        <img\n          src="https://maxlweigl83.github.io/outlook-signatur/image001.png"\n          alt="Logo Stadtgemeinde Deutsch-Wagram"\n          width="118"\n          style="width:118px;height:auto;border:0;"\n        >\n      </p>\n\n      <p style="color:#174b89;margin:0;">\n        Stadtgemeinde Deutsch-Wagram<br>\n        2232 Deutsch-Wagram, Bahnhofstraße 1a<br>\n        Telefon: +43(0)2247/2209-13<br>\n        Fax: +43(0)2247/2209-30<br>\n        E-Mail:\n        <a href="mailto:buergermeister@deutsch-wagram.gv.at">\n          buergermeister@deutsch-wagram.gv.at\n        </a>\n      </p>\n<p style="margin:16px 0 0 0;">\n  <img\n    src="https://maxlweigl83.github.io/outlook-signatur/Aktueller-Banner.jpg"\n    alt="Aktuelle Kampagne der Stadtgemeinde Deutsch-Wagram"\n    width="500"\n    style="width:100%;max-width:500px;height:auto;border:0;"\n  >\n</p>\n    </div>\n  ',{coercionType:Office.CoercionType.Html},function(n){n.status===Office.AsyncResultStatus.Failed&&console.error("Signaturfehler:",n.error),e.completed()})}catch(n){console.error("Fehler beim Einfügen der Signatur:",n),e.completed()}});
+
+Office.actions.associate("signaturEinfuegen", function (event) {
+  const signatur = `
+    <div style="font-family:Calibri,Arial,sans-serif;font-size:12pt;line-height:normal;">
+      <p style="margin:0;color:#833C0B;font-family:Calibri,Arial,sans-serif;font-size:12pt;">
+        <strong>Markus Mentl-Weigl</strong>
+      </p>
+      <p style="margin:0;color:#833C0B;font-family:Calibri,Arial,sans-serif;font-size:12pt;">
+        Bürgermeister
+      </p>
+
+      <p style="margin:12pt 0 0 0;">
+        <img
+          src="https://maxlweigl83.github.io/outlook-signatur/image001.png"
+          alt="Logo Stadtgemeinde Deutsch-Wagram"
+          width="163"
+          height="85"
+          style="width:163px;height:85px;border:0;"
+        >
+      </p>
+
+      <p style="margin:12pt 0 0 0;color:#1F497D;font-family:Calibri,Arial,sans-serif;font-size:12pt;">
+        Stadtgemeinde Deutsch-Wagram
+      </p>
+      <p style="margin:0;color:#1F497D;font-family:Calibri,Arial,sans-serif;font-size:12pt;">
+        2232 Deutsch-Wagram, Bahnhofstraße 1a
+      </p>
+      <p style="margin:0;color:#1F497D;font-family:Calibri,Arial,sans-serif;font-size:12pt;">
+        Telefon: +43(0)2247/2209-13
+      </p>
+      <p style="margin:0;color:#1F497D;font-family:Calibri,Arial,sans-serif;font-size:12pt;">
+        Fax: +43(0)2247/2209-30
+      </p>
+      <p style="margin:0;color:#1F497D;font-family:Calibri,Arial,sans-serif;font-size:12pt;">
+        E-Mail:
+        <a href="mailto:buergermeister@deutsch-wagram.gv.at">buergermeister@deutsch-wagram.gv.at</a>
+      </p>
+
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td height="30" style="height:30px;font-size:1px;line-height:30px;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>
+            <img
+              src="https://maxlweigl83.github.io/outlook-signatur/Aktueller-Banner.jpg"
+              alt="Aktuelles Kampagnenbanner"
+              width="600"
+              style="display:block;width:600px;max-width:100%;height:auto;border:0;"
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+  `;
+
+  try {
+    Office.context.mailbox.item.body.setSignatureAsync(
+      signatur,
+      { coercionType: Office.CoercionType.Html },
+      function (result) {
+        if (result.status === Office.AsyncResultStatus.Failed) {
+          console.error("Signaturfehler:", result.error);
+        }
+        event.completed();
+      }
+    );
+  } catch (error) {
+    console.error("Fehler beim Einfügen der Signatur:", error);
+    event.completed();
+  }
+});
